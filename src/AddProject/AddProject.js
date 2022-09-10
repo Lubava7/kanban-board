@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+// import AddTask from "../AddTask/AddTask";
 import AddTask from "../AddTask/AddTask";
 
 const randomId = () => {
@@ -11,15 +12,15 @@ function AddProject() {
   const [text, setText] = useState("");
   const [projects, setProjects] = useState([]);
   const [counter, setCounter] = useState(projects.length);
-  // const [currentProject , setCurrentProject] = useState()
 
-  // const [counter, setCounter] = useState(0);
-
-  // const [currentProject, setCurrentProject] = useState()
+  const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState("");
 
   useEffect(() => {
     document.title = `${counter} projects`;
   });
+
+  const onChange = (words) => setData(words.name);
 
   function addProject(text) {
     if (text) {
@@ -39,8 +40,6 @@ function AddProject() {
     setText(e.target.value);
   }
 
-  const alerts = <div>remove space key before text</div>;
-
   function handleKeyPress(e) {
     if (text[0] === " ") {
       return;
@@ -57,8 +56,8 @@ function AddProject() {
     <div>
       AddTask {randomId()}
       <input
-        autoFocus
-        placeholder="okey lets go"
+        // autoFocus
+        placeholder="add proj"
         value={text}
         type="text"
         onChange={handleChange}
@@ -67,12 +66,16 @@ function AddProject() {
       <div style={{ border: "2px solid black", height: "100%" }}>
         {projects.map((project) => {
           return (
-            <div style={{ border: "2px solid pink", height: "100%" }}>
+            <div
+              onClick={() => setIsOpen(!isOpen)}
+              style={{ border: "2px solid pink", height: "100%" }}
+            >
               {project.name}
             </div>
           );
         })}
       </div>
+      <AddTask isOpen={isOpen} onChange={onChange} />
     </div>
   );
 }
