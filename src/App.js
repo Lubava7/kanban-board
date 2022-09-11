@@ -1,15 +1,14 @@
 import "./App.css";
-import AddProject from "./AddProject/AddProject";
-// import AddTask from "./AddTask/AddTask";
+// import AddProject from "./AddProject/AddProject";
 import SpacingGrid from "./SpacingGrid/SpacingGrid";
+import Header from "./Header/Header";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header"></header>
+      <Header />
       <body>
-        <AddProject />
-        {/* <AddTask /> */}
+        {/* <AddProject /> */}
         <SpacingGrid />
       </body>
     </div>

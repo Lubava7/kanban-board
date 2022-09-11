@@ -1,14 +1,17 @@
 import React from "react";
 import { useEffect, useState } from "react";
-// import AddTask from "../AddTask/AddTask";
 import AddTask from "../AddTask/AddTask";
+import TextField from "@mui/material/TextField";
+
+import ListItemText from "@mui/material/ListItemText";
+import Box from "@mui/material/Box";
 
 const randomId = () => {
   return Math.random().toString(36).substring(2, 15);
 };
 console.log(randomId());
 
-function AddProject() {
+function AddProject({ isVisible }) {
   const [text, setText] = useState("");
   const [projects, setProjects] = useState([]);
   const [counter, setCounter] = useState(projects.length);
@@ -31,7 +34,6 @@ function AddProject() {
         complete: false,
       };
       setProjects([...projects, newProject]);
-      console.log(projects, newProject);
       setCounter(projects.length + 1);
     }
   }
@@ -52,32 +54,33 @@ function AddProject() {
     addProject(text);
     setText("");
   }
-  return (
-    <div>
-      AddTask {randomId()}
-      <input
-        // autoFocus
-        placeholder="add proj"
-        value={text}
-        type="text"
-        onChange={handleChange}
-        onKeyDown={handleKeyPress}
-      />
-      <div style={{ border: "2px solid black", height: "100%" }}>
-        {projects.map((project) => {
-          return (
-            <div
-              onClick={() => setIsOpen(!isOpen)}
-              style={{ border: "2px solid pink", height: "100%" }}
-            >
-              {project.name}
-            </div>
-          );
-        })}
+
+  if (isVisible) {
+    return (
+      <div>
+        <TextField
+          autoFocus
+          value={text}
+          type="text"
+          onChange={handleChange}
+          onKeyDown={handleKeyPress}
+          required
+          id="outlined-required"
+          label="Project name"
+        />
+        <Box>
+          {projects.map((project) => {
+            return (
+              <ListItemText key={randomId} onClick={() => setIsOpen(!isOpen)}>
+                {project.name}
+              </ListItemText>
+            );
+          })}
+        </Box>
+        <AddTask isOpen={isOpen} onChange={onChange} />
       </div>
-      <AddTask isOpen={isOpen} onChange={onChange} />
-    </div>
-  );
+    );
+  }
 }
 
 export default AddProject;

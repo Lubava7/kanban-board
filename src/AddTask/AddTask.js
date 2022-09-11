@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -57,6 +57,7 @@ function AddTask({ isOpen, onChange }) {
     return (
       <div>
         <input
+          autoFocus
           placeholder="add task"
           value={words}
           type="text"
