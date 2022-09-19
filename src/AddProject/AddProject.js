@@ -7,7 +7,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
 
 const randomId = () => {
-  return Math.random().toString(36).substring(2, 15);
+  return Date.now();
 };
 console.log(randomId());
 
@@ -19,9 +19,16 @@ function AddProject({ isVisible }) {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState("");
 
+  const [currentProject, setCurrentProject] = useState({});
+
   useEffect(() => {
     document.title = `${counter} projects`;
   });
+
+  function selectProject(project) {
+    setIsOpen(!isOpen);
+    setCurrentProject(project);
+  }
 
   const onChange = (words) => setData(words.name);
 
@@ -35,6 +42,7 @@ function AddProject({ isVisible }) {
       };
       setProjects([...projects, newProject]);
       setCounter(projects.length + 1);
+      setCurrentProject(newProject);
     }
   }
 
@@ -71,13 +79,21 @@ function AddProject({ isVisible }) {
         <Box>
           {projects.map((project) => {
             return (
-              <ListItemText key={randomId} onClick={() => setIsOpen(!isOpen)}>
+              <ListItemText
+                key={project.id}
+                onClick={() => selectProject(project)}
+              >
                 {project.name}
               </ListItemText>
             );
           })}
         </Box>
-        <AddTask isOpen={isOpen} onChange={onChange} />
+        <AddTask
+          isOpen={isOpen}
+          currentProject={currentProject}
+          setCurrentProject={setCurrentProject}
+          onChange={onChange}
+        />
       </div>
     );
   }

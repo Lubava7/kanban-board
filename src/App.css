@@ -1,0 +1,5 @@
+.App {
+  background-image: url("../src/image/space.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -6,6 +6,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
 
 const bull = (
   <Box
@@ -20,28 +21,31 @@ const randomId = () => {
 };
 console.log(randomId());
 
-function AddTask({ isOpen, onChange }) {
-  const [words, setWords] = useState("");
-  const [tasks, setTasks] = useState([]);
+function AddTask({ isOpen, currentProject, setCurrentProject }) {
+  const [word, setWord] = useState("");
+  // const [tasks, setTasks] = useState([]);
 
-  function addTask(words) {
-    if (words) {
+  function addTask(word) {
+    if (word) {
+      const newProject = { ...currentProject };
       const newTask = {
         id: randomId(),
-        name: words,
-        complete: false,
+        task: word,
+        // complete: false,
       };
-      setTasks([...tasks, newTask]);
-      console.log(tasks, newTask);
+      // setTasks([...tasks, newTask]);
+      // console.log(tasks, newTask);
+      newProject.tasks.push(newTask);
+      setCurrentProject(newProject);
     }
   }
 
   function handleChangeTask(e) {
-    setWords(e.target.value);
+    setWord(e.target.value);
   }
 
   function handleKeyPressTask(e) {
-    if (words[0] === " ") {
+    if (word[0] === " ") {
       return;
     } else if (e.key === "Enter") {
       handleSubmitTask(e);
@@ -49,52 +53,68 @@ function AddTask({ isOpen, onChange }) {
   }
   function handleSubmitTask(e) {
     e.preventDefault();
-    addTask(words);
-    setWords("");
+    addTask(word);
+    setWord("");
   }
+  // function EditTask(word) {
+  //   const [text, setText] = useState("");
+  //   setWord(text);
+  // }
 
   if (isOpen) {
     return (
       <div>
-        <input
-          autoFocus
-          placeholder="add task"
-          value={words}
-          type="text"
-          onChange={handleChangeTask}
-          onKeyDown={handleKeyPressTask}
-        />
-        <div className="mapTask">
-          {tasks.map((task) => {
-            return (
-              <Card
-                draggable="true"
-                sx={{ width: 275, backgroundColor: "hotpink" }}
-              >
-                <CardContent>
-                  <Typography
-                    sx={{ fontSize: 14 }}
-                    color="text.secondary"
-                    gutterBottom
+        {currentProject.name ? (
+          <div className="mapTask">
+            <TextField
+              autoFocus
+              placeholder="add task"
+              value={word}
+              type="text"
+              onChange={handleChangeTask}
+              onKeyDown={handleKeyPressTask}
+            />
+
+            {currentProject.tasks &&
+              currentProject.tasks.map((task) => {
+                return (
+                  <Card
+                    key={task.id}
+                    draggable="true"
+                    sx={{ width: 275, backgroundColor: "hotpink" }}
                   >
-                    Карточка таска, НЕ проекта
-                  </Typography>
-                  <Typography variant="h5" component="div">
-                    {bull}
-                    {task.name}
-                    {bull}
-                  </Typography>
-                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    название проекта , в котором таск
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small">Редактировать {task.id}</Button>
-                </CardActions>
-              </Card>
-            );
-          })}
-        </div>
+                    <CardContent>
+                      <Typography
+                        sx={{ fontSize: 14 }}
+                        color="text.secondary"
+                        gutterBottom
+                      >
+                        Task Card
+                      </Typography>
+                      <Typography variant="h5" component="div">
+                        {bull}
+                        {task.task}
+                        {bull}
+                      </Typography>
+                      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        {currentProject.name}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button
+                        size="small"
+                        // onClick={EditTask(word)}
+                      >
+                        Edit
+                      </Button>
+                    </CardActions>
+                  </Card>
+                );
+              })}
+          </div>
+        ) : (
+          <div>bla bla</div>
+        )}
       </div>
     );
   }
