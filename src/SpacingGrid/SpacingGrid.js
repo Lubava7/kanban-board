@@ -25,7 +25,7 @@ export default function SpacingGrid({ children }) {
   }
 
   function DragEndHandler(e) {
-    e.target.style.backgroundColor = "blue";
+    e.target.style.backgroundColor = "#73C4FF";
     e.target.style.opacity = "0.614";
   }
 
@@ -50,7 +50,7 @@ export default function SpacingGrid({ children }) {
       })
     );
 
-    e.target.style.backgroundColor = "blue";
+    e.target.style.backgroundColor = "#73C4FF";
     e.target.style.opacity = "0.3";
   }
 
@@ -96,7 +96,7 @@ export default function SpacingGrid({ children }) {
                 width: 320,
                 backgroundColor: "#F7F6EB",
                 boxShadow: "-2px 2px 5px -1px grey",
-                backgroundColor: "blue",
+                backgroundColor: "#73C4FF",
                 opacity: 0.614,
                 color: "black",
               }}
@@ -109,7 +109,7 @@ export default function SpacingGrid({ children }) {
                   fontSize: "40px",
                   color: "black",
                   textAlign: "center",
-                  backgroundColor: "blue",
+                  backgroundColor: "#73C4FF",
                   opacity: 0.614,
                   boxShadow: "-2px 2px 5px -1px grey",
                 }}
