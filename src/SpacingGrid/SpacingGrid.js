@@ -1,16 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import Grid from "@mui/material/Grid";
+
 import Paper from "@mui/material/Paper";
-
-import AddTask from "../AddTask/AddTask";
-
-// import ListItemText from "@mui/material/ListItemText";
 
 import "./SpacingGrid.css";
 
 export default function SpacingGrid({ children }) {
-  const [spacing, setSpacing] = useState(2);
   const [columns, setColumns] = useState([
     { id: 1, order: 1, text: "ToDo" },
     { id: 2, order: 2, text: "In Progress" },
@@ -51,7 +46,7 @@ export default function SpacingGrid({ children }) {
     );
 
     e.target.style.backgroundColor = "#73C4FF";
-    e.target.style.opacity = "0.3";
+    e.target.style.opacity = "0.614";
   }
 
   // сортирововчная функция
@@ -64,64 +59,24 @@ export default function SpacingGrid({ children }) {
   };
 
   return (
-    <Grid
-      item
-      container
-      spacing={spacing}
-      xs={12}
-      sx={{ flexGrow: 1, marginTop: "30px" }}
-    >
-      <Grid
-        container
-        sx={{
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        spacing={spacing}
-      >
+    <div className="main-cont">
+      <div className="grid-cont">
         {columns.sort(sortColumns).map((column) => (
-          <Grid
-            draggable={true}
+          <div
+            draggable="true"
             onDragStart={(e) => DragStartHandler(e, column)}
             onDragLeave={(e) => DragEndHandler(e)}
             onDragEnd={(e) => DragEndHandler(e)}
             onDragOver={(e) => DragOverHandler(e, column)}
             onDrop={(e) => dropHandler(e, column)}
             key={column.id}
-            sx={{ cursor: "move", padding: "0", margin: 1 }}
+            className="MuiGrid"
           >
-            <Paper
-              sx={{
-                height: 800,
-                width: 320,
-                backgroundColor: "#F7F6EB",
-                boxShadow: "-2px 2px 5px -1px grey",
-                backgroundColor: "#73C4FF",
-                opacity: 0.614,
-                color: "black",
-              }}
-            >
-              <div
-                draggable={false}
-                style={{
-                  padding: 0,
-                  marginTop: 0,
-                  fontSize: "40px",
-                  color: "black",
-                  textAlign: "center",
-                  backgroundColor: "#73C4FF",
-                  opacity: 0.614,
-                  boxShadow: "-2px 2px 5px -1px grey",
-                }}
-              >
-                {column.text}
-              </div>
-              {children}
-              <AddTask />
-            </Paper>
-          </Grid>
+            <div className="paper-header">{column.text}</div>
+            <div className="paper">{children}</div>
+          </div>
         ))}
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 }

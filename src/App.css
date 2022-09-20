@@ -1,5 +1,19 @@
 .App {
+  /* background-image: url("../src/image/space.webp");
+  background-color: #73c4ff;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%; */
+}
+body,
+html {
+  /* width: 100%;
+  height: 100%; */
   background-image: url("../src/image/space.webp");
+  background-color: #73c4ff;
+  height: 100%;
+  width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
 }

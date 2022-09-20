@@ -8,6 +8,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
+// import SpacingGrid from "../SpacingGrid/SpacingGrid";
+
 const bull = (
   <Box
     component="span"
@@ -63,6 +65,7 @@ function AddTask({ isOpen, currentProject, setCurrentProject }) {
 
   if (isOpen) {
     return (
+      // <SpacingGrid>
       <div>
         {currentProject.name ? (
           <div className="mapTask">
@@ -81,7 +84,11 @@ function AddTask({ isOpen, currentProject, setCurrentProject }) {
                   <Card
                     key={task.id}
                     draggable="true"
-                    sx={{ width: 275, backgroundColor: "hotpink" }}
+                    sx={{
+                      width: 275,
+                      backgroundColor: "#73C4FF",
+                      opacity: 0.614,
+                    }}
                   >
                     <CardContent>
                       <Typography
@@ -116,6 +123,7 @@ function AddTask({ isOpen, currentProject, setCurrentProject }) {
           <div>bla bla</div>
         )}
       </div>
+      // </SpacingGrid>
     );
   }
 }

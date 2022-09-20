@@ -6,9 +6,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <body>
-        <SpacingGrid />
-      </body>
+      <SpacingGrid />
     </div>
   );
 }

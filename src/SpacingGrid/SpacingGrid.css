@@ -1,6 +1,33 @@
-.grid {
-  margin-top: 50px;
+.paper {
+  height: 300px;
+  width: 260px;
+  box-shadow: -2px 2px 5px -1px grey;
+  background-color: #73c4ff;
+  opacity: 0.614;
+  color: black;
 }
-.box {
+.paper-header {
+  padding: 0;
+  margin-top: 0;
+  font-size: 40px;
+  color: black;
+  text-align: center;
+  background-color: #73c4ff;
+  opacity: 0.614;
+  box-shadow: -2px 2px 5px -1px grey;
+}
+.MuiGrid {
   cursor: move;
+  padding: 0;
+  margin: 5px;
+}
+.grid-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-cont {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
 }

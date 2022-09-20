@@ -4,7 +4,6 @@ import AddTask from "../AddTask/AddTask";
 import TextField from "@mui/material/TextField";
 
 import ListItemText from "@mui/material/ListItemText";
-import Box from "@mui/material/Box";
 
 const randomId = () => {
   return Date.now();
@@ -76,7 +75,7 @@ function AddProject({ isVisible }) {
           id="outlined-required"
           label="Project name"
         />
-        <Box>
+        <div>
           {projects.map((project) => {
             return (
               <ListItemText
@@ -87,7 +86,7 @@ function AddProject({ isVisible }) {
               </ListItemText>
             );
           })}
-        </Box>
+        </div>
         <AddTask
           isOpen={isOpen}
           currentProject={currentProject}
